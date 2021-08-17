@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_style %}
+<style>
+    .main_title {
+        color: white;
+        text-align: center;
+        padding-top: 50px;
+        color: yellow;
+    }
+
+    .main_form {
+        padding-top: 50px;
+        width: 500px;
+        color: white;
+    }
+
+    .main_content {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .main_text{
+        padding-bottom: 20px;
+    }
+
+    p{
+        font-size:18px;
+    }
+
+    .form_text{
+        padding-top:12px;
+    }
+
+    button{
+        margin-top:30px;
+        width:200px;
+        height:30px;
+        background-color: rgb(216, 191, 216);
+    }
+
+    .photo_upload{
+        margin-top:20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class='main_title'>
+    <h1>Закажите портрет прямо сейчас!</h1>
+</div>
+<div class='main_content'>
+    <div class='main_form'>
+        <div class='main_text'>
+            <p>Ниже представлена форма, в которой вы сможете выбрать все необходимые параметры для вашего заказа. Если у вас есть какие либо 
+                специальные пожелание, их вы сможете записать в раздел "Дополнительные пожелания". <br>
+                После оформления заказа с вами свяжется художник, чтобы подтвердить заказ. Портрет будет готов в течение 3 рабочих дней. Цена - 3000 рублей.
+            </p>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class='form_text'>Ваше имя</p>
+            {{ form.name }}
+            <p class='form_text'>Адрес для доставки</p>
+            {{ form.address }}
+            <p class='form_text'>Ссылка на вконтакте или инстаграмм для связи</p>
+            {{ form.link }}
+            <p class='form_text'>Размер портрета</p>
+            {{ form.size }}
+            <p class='form_text'>Техника выполнения</p>
+            {{ form.technic }}
+            <p class='form_text'>Дополнительные пожелания (если их нет, поставьте прочерк)</p>
+            {{ form.thoughts }}
+            <p class='form_text photo_upload'>Загрузка фотографии</p>
+            {{ form.photo }}
+            <button type="submit">Подать заявку</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
